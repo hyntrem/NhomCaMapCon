@@ -1,0 +1,40 @@
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device - width" />
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <button style="color:black; width:100px" onclick="handleLogout()">Đăng xuất?</button>
+    <script>
+        function getLoggedInUser() {
+            return JSON.parse(localStorage.getItem('loggedInUser'));
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('loggedInUser');
+            alert('Đăng xuất thành công!');
+            showSection('home');
+            window.location.href = '/Home/HomePage';
+        }
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+        window.onload = function () {
+            displayUserProfile();
+        };
+    </script>
+
+</body>
+</html>
